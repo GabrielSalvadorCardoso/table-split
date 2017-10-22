@@ -1,0 +1,7 @@
+- Das colunas de 'id_atividade' até 'prioridade' todos estes campos pertencem a tabela 't_atividade'
+
+- De 'passages1' até 'material_cosumo4' pertencem a tabela 't_custeio'(que na verdade serão valores desta tabela e não campos)
+
+- Os valores pertencem a tabela 't_atividade_custeio' e são referentes a um relacionamento entre atividade e custeio
+
+- Os números ao lado dos campos devem se tranformar no id de cada instância que será

@@ -1,0 +1,11 @@
+id_atividade,nome,data_prevista,data_executada,custo,possibilidade_remarcacao
+1,Elaboração de relatório anual,2017/10/30,,1500,True
+2,Seleção de equipes para seminário,2018-04-04,,200.45,FALSE
+3,Medição de área geográfica,2018/09/15,,10000.50,false
+4,Contratação de novo funcionários,2017/04/01,2017/05/01,90000,TRUE
+5,Curso preparatório para novos funcionários,2018-01-01,,40000,true
+6,Elaboração de plano de contingência,2019/09/09,,10050.50,FaLSe
+7,Convocação de prestação de contas,2016/08/08,2017-01-01,,
+8,Planejamento de distribuição de verba,2018-01-01,,,true
+9,Estabelecimento de metas anuais,2016/08/08,2016/10/10,,false
+10,Aquisição de bens materiais,2017/01/01,,450250.77,faLSE

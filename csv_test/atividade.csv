@@ -1,11 +1,10 @@
-id_atividade,nome,data_prevista,data_executada,custo,possibilidade_remarcacao
-1,Elaboração de relatório anual,2017/10/30,,1500,True
-2,Seleção de equipes para seminário,2018-04-04,,200.45,FALSE
-3,Medição de área geográfica,2018/09/15,,10000.50,false
-4,Contratação de novo funcionários,2017/04/01,2017/05/01,90000,TRUE
-5,Curso preparatório para novos funcionários,2018-01-01,,40000,true
-6,Elaboração de plano de contingência,2019/09/09,,10050.50,FaLSe
-7,Convocação de prestação de contas,2016/08/08,2017-01-01,,
-8,Planejamento de distribuição de verba,2018-01-01,,,true
-9,Estabelecimento de metas anuais,2016/08/08,2016/10/10,,false
-10,Aquisição de bens materiais,2017/01/01,,450250.77,faLSE
+id_atividade,codigo,nome,data_inicio,data_fim,prioridade,11-passagens,12-diarias,13-aquisicao_software,14-material_consumo
+1,P22,Demarcação de território,2017-08-10,2017-09-10,1,4000,,100000,3500
+2,P55,Medição gravimétrica,2017-09-10,2017-12-30,1,3000,888.77,,1000.45
+3,PA1,Palestra de concientização ambiental,2017-01-30,2017-03-30,1,8570.80,700,,1045.50
+4,P13,Contratação de novos funcionários,2017-05-10,2017-08-10,2,9050.88,,,2500.60
+5,P14,Visita técnica,2017-08-08,2017-10-10,2,,400,,999.50
+6,PA22,Melhoria na medição gravimétrica,2017-10-11,2017-10-31,3,,1000,,1500.50
+7,P55,Treinamento de novos estagiários,2017-11-11,2017-12-31,3,9550,,,995
+8,P6,Reunião sobre geociência,2017-08-04,2017-10-01,3,10000,,,1000.45
+9,PA1,Melhoria em processos de medição geométrica,2017-01-01,2017-02-01,3,,,120000,1456.64

@@ -1,12 +1,39 @@
 import csv
 from readcsv import readcsv
 
-CSV_FILE_PATH = "csv_test/t_atividade.csv"
-OLD_DICT_LIST = readcsv(CSV_FILE_PATH) # Retorna a lista de dicionário gerado a partir do csv
+CSV_FILE_PATH = "csv_test/atividade.csv"
+ATIVIDADE_DICT_LIST = readcsv(CSV_FILE_PATH) # Retorna a lista de dicionário gerado a partir de atividade.csv
 
-#DEBUG
-#for dicio in OLD_DICT_LIST:
-    #print(dicio)
+def show_dicts(dict_list, showkeys=False):
+    """
+    Função auxiliar que mostra o estado da lista de dicionários
+    passada como parâmentro. Esta função tem o objetivo apenas
+    de facilitar o debug
+    :param dict_list:
+    :return:
+    """
+    for dicio in dict_list:
+        print(dicio)
+
+    if showkeys:
+        print("-------------------------------------------------")
+        print("KEYS LIST")
+        print("[", end='')
+        for key in dict_list[0].keys():
+            print(key, end=' ')
+        print("]")
+        print("-------------------------------------------------")
+
+def create_related_csv(filename,  dict_list): #['id_custeio', 'nome']
+    with open('csv_test/' + filename + '.csv', 'w') as csvfile:
+
+        # Os nomes das colunas serão as chaves do primeiro dicionario
+        escritor = csv.DictWriter(csvfile, fieldnames= dict_list[0].keys())
+        escritor.writeheader()
+
+        # escrevendo cada valor do diconario no arquivo .csv
+        for dicio in dict_list:
+            escritor.writerow(dicio)
 
 def create_relationship(old_dict_list): # recebe a lista de dicionarios de t_atividade
     """
@@ -16,7 +43,7 @@ def create_relationship(old_dict_list): # recebe a lista de dicionarios de t_ati
     :return:
     """
 
-    custeio_dict_list = readcsv("csv_test/testando.csv") # lista de dicionario do custeio
+    custeio_dict_list = readcsv("csv_test/custeio.csv") # lista de dicionario do custeio
 
     relationship_dict_list = [] # lista de dicionarios que formará o .csv do relacionamento
 
@@ -47,8 +74,8 @@ def create_relationship(old_dict_list): # recebe a lista de dicionarios de t_ati
                 relationship_dict['id_custeio'] = custeio_dict['id_custeio']
                 relationship_dict['valor'] = atividade_dict[ custeio_dict['id_custeio'] + "-" + custeio_dict['nome'] ]
 
-                #relationship_dict_list.append(relationship_dict)
-                print(relationship_dict)
+                relationship_dict_list.append(relationship_dict)
+                #print(relationship_dict)
 
                 #DEBUG
                 #print("ID Atividade: " + atividade_dict['id_atividade'] + " -> " +
@@ -57,94 +84,96 @@ def create_relationship(old_dict_list): # recebe a lista de dicionarios de t_ati
                 #      atividade_dict[ custeio_dict['id_custeio'] + "-" + custeio_dict['nome']])
         #print("---------------------------------------------------------------------")
 
-    #DEBUG
-    for dicio in relationship_dict_list:
-        print(dicio)
-
     #for dicio in old_dict_list:
     #    print("A atividade ID " + dicio['id_atividade'] +
     #          " '" + dicio['nome'] + "' esta relacionada ao custeio DE VALOR:" + dicio['11-passagens'])
+    return relationship_dict_list
 
-
-
-def create_rside(old_dict_list):
+def create_rside(source_dict_list):
     """
     Será montada uma lista de dicionários baseada na primeira linha do documento csv
     Esta lista conterá apenas os cabeçalhos com prefixo numérico
-    Este prefixo será a chave primaria do custeio enquanto que o restante do nome será
+    Este prefixo será a chave primaria da entidade enquanto que o restante do nome será
     o nome do custeio associada a chave
+    :param source_dict_list:
     :return:
     """
 
-    custeio_dict_list = [] # Dados que formarão o .csv do custeio
+    rside_dict_list = [] # Dados que formarão o .csv do custeio
 
-    for old_dicio in old_dict_list:
-        """
-        Montando uma lista de dicionarios a partir de cada dicionario antigo
-        """
+    for source_dict in source_dict_list: # Montando uma lista de dicionarios a partir de cada dicionario antigo
 
-        for chave in old_dicio.keys():
+        for chave in source_dict.keys():
 
             if chave[0].isnumeric(): # Precisamos apenas dos cabeçalho numerado
 
                 (pk, value) = chave.split('-') # Separa a parte numerica do restante do cabeçalho
-                custeio_dict = {}
-                custeio_dict['id_custeio'] = pk # Mudar para nome genéricos
-                custeio_dict['nome'] = value
+                rside_dict = {}
+                rside_dict['id_custeio'] = pk # Mudar para nome genéricos
+                rside_dict['nome'] = value
 
                 # O ID DEVE SER UM VALOR ASSOCIADA A CHAVE id_custeio #DEBUG
                 #print("{'" + custeio_dict['id_custeio'] + "' : '" + custeio_dict['nome'] + "'}", end='')
-                custeio_dict_list.append(custeio_dict)
+                rside_dict_list.append(rside_dict)
 
         break # Usaremos apenas o primeiro dicionário da lista antiga, pois precisamos apenas dos cabeçaos numerados
 
-    return custeio_dict_list
+    return rside_dict_list
+
+def create_lside(source_dict_list):
+    """
+    Cria a primeira parte, "o lado esqueerdo" do relacionaamento, baseado na lista
+    de dicionarios da funte(ariunda do arquivo csv que contem todos os dados a serem divididos)
+    :param source_dict_list:
+    :return:
+    """
+
+    lside_dict_list = []
+
+    for source_dict in source_dict_list: # Iterando sobre a lista de dicionário original
+
+        lside_dict = {} # Cria um novo dicionario para cada dicionário da lista original
+
+        for chave in source_dict.keys(): # Iterando sobre as chaves do cionario atual
+
+            if chave[0].isnumeric() == False: # So nos interessa as chaves não numericas
+                lside_dict[chave] = source_dict[chave]
+
+        lside_dict_list.append(lside_dict)
+
+    return lside_dict_list
 
 
+# CRIANDO O CSV REFERENTE A TABELA ATIVIDADE
+atividade_solo_list = create_lside(ATIVIDADE_DICT_LIST)
+#show_dicts(atividade_solo_list)
+create_related_csv('T_atividade', atividade_solo_list)
 
-
-
-
-
-
-
-"""
-    for dicionario in dict_list: # Manipulando o dicionario atual(da antiga lista de dicionarios)
-        # Geraremos um novo dicionário para cada dicionário antigo
-        new_dict = {}
-        new_dict['pk'] = "" # Coluna da chave primaria
-        new_dict['<attribute>'] = "" # Colunas dos atributos
-
-        for chave in dicionario.keys(): # Iterando pelas chaves do dicionario atual
-
-            if chave[0].isnumeric(): # Verifica se o primeiro caracter da chave atual é numérico
-
-                # Se for numérico, pegamos a parte numérica para ser o id,
-                # e o restante para ser a instância relacionada ao id
-                ( new_dict['pk'] , new_dict['<attribute>'] ) = chave.split('-')
-
-                #DEBUG
-                #print( new_dict['pk'] + " : " + new_dict['<attribute>'])
-
-                new_dict_list.append(new_dict)
-
-        #print(new_dict_list)
-        #print("----------------------------------------")
-"""
-
-"""
-# Criando a tabela relacionada
-custeio_dict_list = create_rside(OLD_DICT_LIST)
-for custeio in custeio_dict_list:
-    print(custeio)
-
-with open('csv_test/testando.csv', 'w') as csvfile:
-    escritor = csv.DictWriter(csvfile, fieldnames=['id_custeio', 'nome'])
-    escritor.writeheader()
-
-    for custeio in custeio_dict_list:
-        escritor.writerow(custeio)
-"""
+# CRIANDO O CSV REFERENTE A TABELA CUSTEIO
+custeio_dict_list = create_rside(ATIVIDADE_DICT_LIST) # TESTE PASSO 2
+#show_dicts(custeio_dict_list, showkeys=False)
+create_related_csv('custeio', custeio_dict_list) # TESTE PASSO 3
 
 #Criando o relacionamento entre as tabelas
-create_relationship(OLD_DICT_LIST)
+atividade_custeio_dict_list = create_relationship(ATIVIDADE_DICT_LIST) # TESTE PASSO 4
+#show_dicts(atividade_custeio_dict_list)
+create_related_csv('atividade_custeio', atividade_custeio_dict_list)
+
+
+"""
+PROCEDIMENTO DE TESTE:
+1. Apague tudo que estiver dentro do diretorio 'csv_test' da aplicação mantendo apenas a pasta 'backup' e o arquivo 'atividade.csv'
+2. Acione a função 'create_rside' passando a lista de dicionários oriunda do arquivo 'atividade.csv'
+3. Passe a lista de dicionarios retornado para a função 'create_related_csv' juntamente com o nome do arquivo desejado
+    3.1. O csv a ser relacionado com 'atividade.csv' é criado, observe que o arquivo .csv aparece no mesmo diretório de 'atividade.csv'
+4. Com o arquivo criado, acione 'create_relationship' passando a lista de dicionarios oriundos de 'atividade.csv'
+5. Esta função retornará uma lista de dicionários que deverá ser submetida a função 'create_realated_csv'
+    5.1 Verifique o diretório 'csv_test', agora temos os arquivos 'atividade.csv', 'custeio.csv' e 'atividade_custeio.csv'
+    5.2 Este arquivos representam as duas partes do relacionamento N:N e o relacionamento em si
+6. Agora podemos submeter estes arquivos ao modulo 'db_handler.py' para que sejam inseridos no banco de dados
+    6.1 As tabelas referentes a cada arquivo csv devem estar previamente criadas com os tipos correspondentes
+7. Opicionalmente você pode criar um arquivo csv que contenha apenas os dados referentes a atividade
+    7.1. Acionae a função 'create_lside' passando a lista de dicionarios advinda do arquivo 'atividade.csv'
+    7.2. O dicionario retornado terá os dados especificos de atividade, agora é só enviar esta lista para 'create_related_csv'
+8. No final teremos os seguintes arquivos csv: um referente a atividade outro referente ao custeio e mais um referente ao relacionamento 
+"""

@@ -1,0 +1,28 @@
+create table Codigo(
+	id_codigo integer not null,
+    titulo_codigo varchar(200) not null,
+    codigo varchar(500) not null,
+    descricao varchar(100),
+    constraint pk_codigo primary key(id_codigo)
+);
+
+create table contribuidor(
+	id_contribuidor integer not null,
+    login_contribuidor varchar(50) not null,
+    nome_contribuidor varchar(200) not null,
+    e_mail varchar(100) not null,
+    constraint pk_contribuidor primary key(id_contribuidor)
+);
+
+create table codigo_contribuidor(
+	id_codigo_contribuidor integer not null,
+    id_codigo integer not null,
+    id_contribuidor integer not null,
+    constraint pk_codigo_contribuidor primary key(id_codigo_contribuidor),
+    constraint fk_codigo_contribuidor_codigo foreign key(id_codigo) references codigo(id_codigo),
+    constraint fk_codigo_Contribuidor_contribuidor foreign key(id_contribuidor) references contribuidor(id_contribuidor)
+);
+
+select * from codigo;
+select * from contribuidor;
+select * from codigo_contribuidor;

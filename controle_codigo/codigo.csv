@@ -1,0 +1,8 @@
+id_codigo,titulo_codigo,codigo,descricao
+1,Hello World em Java,System.out.println(“Hello World”),Primeiro codigo em Java
+2,Hello World em Python 3,print(“Hello World”),Primeiro codigo em Python 3
+3,Hello World em C,printf(“Hello World”),Primeiro codigo em C
+4,Hello World em JavaScript,console.log(“Hello World”),Primeiro codigo em Javascript
+5,Hello World em PHP,echo “Hello Worlf”,Primeiro codigo em PHP
+6,Hello World em Python 2.7,print “Hello World”,Primeiro codigo em Python 2.7
+7,Hello World em Pascal,writeln(“Hello World”),Primeiro codigo em Pascal

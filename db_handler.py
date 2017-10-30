@@ -2,8 +2,8 @@ from readcsv import readcsv
 from connection_factory import get_connection
 import psycopg2
 
-CSV_PATH = 'csv_test/atividade.csv' # localização do arquivo a ser convertido para banco de dados
-TABLE_NAME = 'Atividade'
+CSV_PATH = 'controle_codigo/codigo_contribuidor.csv' # localização do arquivo a ser convertido para banco de dados
+TABLE_NAME = 'codigo_contribuidor'
 
 def treat_value(value):
     """

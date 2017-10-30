@@ -24,8 +24,9 @@ def show_dicts(dict_list, showkeys=False):
         print("]")
         print("-------------------------------------------------")
 
-def create_related_csv(filename,  dict_list): #['id_custeio', 'nome']
-    with open('csv_test/' + filename + '.csv', 'w') as csvfile:
+def create_related_csv(filedirectory, dict_list): #['id_custeio', 'nome']
+    #print(filename)
+    with open(filedirectory + '.csv', 'w', newline='') as csvfile:
 
         # Os nomes das colunas serão as chaves do primeiro dicionario
         escritor = csv.DictWriter(csvfile, fieldnames= dict_list[0].keys())
@@ -145,19 +146,19 @@ def create_lside(source_dict_list):
 
 
 # CRIANDO O CSV REFERENTE A TABELA ATIVIDADE
-atividade_solo_list = create_lside(ATIVIDADE_DICT_LIST)
+#atividade_solo_list = create_lside(ATIVIDADE_DICT_LIST)
 #show_dicts(atividade_solo_list)
-create_related_csv('T_atividade', atividade_solo_list)
+#create_related_csv('T_atividade', atividade_solo_list)
 
 # CRIANDO O CSV REFERENTE A TABELA CUSTEIO
-custeio_dict_list = create_rside(ATIVIDADE_DICT_LIST) # TESTE PASSO 2
+#custeio_dict_list = create_rside(ATIVIDADE_DICT_LIST) # TESTE PASSO 2
 #show_dicts(custeio_dict_list, showkeys=False)
-create_related_csv('custeio', custeio_dict_list) # TESTE PASSO 3
+#create_related_csv('custeio', custeio_dict_list) # TESTE PASSO 3
 
 #Criando o relacionamento entre as tabelas
-atividade_custeio_dict_list = create_relationship(ATIVIDADE_DICT_LIST) # TESTE PASSO 4
+#atividade_custeio_dict_list = create_relationship(ATIVIDADE_DICT_LIST) # TESTE PASSO 4
 #show_dicts(atividade_custeio_dict_list)
-create_related_csv('atividade_custeio', atividade_custeio_dict_list)
+#create_related_csv('atividade_custeio', atividade_custeio_dict_list)
 
 
 """

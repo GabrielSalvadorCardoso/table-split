@@ -1,0 +1,13 @@
+id_codigo,titulo_codigo,codigo,descricao,id_contribuidor,login_contribuidor,nome_contribuidor,e-mail
+1,Hello World em Java,System.out.println(“Hello World”);,Primeiro codigo em Java,1,gab1995,Gabriel Salvador Cardoso,gabrielcardoso95@gmail.com
+1,Hello World em Java,System.out.println(“Hello World”);,Primeiro codigo em Java,2,phmatheus,Philipe Matheus,phmatheus@gmail.com
+1,Hello World em Java,System.out.println(“Hello World”);,Primeiro codigo em Java,3,msouza,Marcos de Souza,marcoss@hotmail.com
+2,Hello World em Python 3,print(“Hello World”),Primeiro codigo em Python 3,1,gab1995,Gabriel Salvador Cardoso,gabrielcardoso95@gmail.com
+3,Hello World em C,printf(“Hello World”);,Primeiro codigo em C,1,gab1995,Gabriel Salvador Cardoso,gabrielcardoso95@gmail.com
+3,Hello World em C,printf(“Hello World”);,Primeiro codigo em C,2,phmatheus,Philipe Matheus,phmatheus@gmail.com
+4,Hello World em JavaScript,console.log(“Hello World”);,Primeiro codigo em Javascript,1,gab1995,Gabriel Salvador Cardoso,gabrielcardoso95@gmail.com
+5,Hello World em PHP,echo “Hello Worlf”;,Primeiro codigo em PHP,1,gab1995,Gabriel Salvador Cardoso,gabrielcardoso95@gmail.com
+5,Hello World em PHP,echo “Hello Worlf”;,Primeiro codigo em PHP,4,criscorrea,Cristina Correa,criscorrea@gmail.com
+6,Hello World em Python 2.7,print “Hello World”,Primeiro codigo em Python 2.7,1,gab1995,Gabriel Salvador Cardoso,gabrielcardoso95@gmail.com
+7,Hello World em Pascal,writeln(“Hello World”);,Primeiro codigo em Pascal,1,gab1995,Gabriel Salvador Cardoso,gabrielcardoso95@gmail.com
+7,Hello World em Pascal,writeln(“Hello World”);,Primeiro codigo em Pascal,2,phmatheus,Philipe Matheus,phmatheus@gmail.com

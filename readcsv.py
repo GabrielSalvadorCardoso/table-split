@@ -1,6 +1,6 @@
 import csv
 
-CSV_COPY_PATH = 'csv_test/copy.csv'
+CSV_COPY_PATH = 'csv_test/codigo.csv'
 
 """
 def writecsv(lines_list):
@@ -42,4 +42,10 @@ def readcsv(csv_path):
 
         return dict_list
 
-#readcsv(CSV_PATH)
+
+#DEBUG
+#codigo_dict_list = readcsv(CSV_COPY_PATH)
+#for dicio in codigo_dict_list:
+#    print(dicio)
+#import splitter
+#splitter.show_dicts(codigo_dict_list)
